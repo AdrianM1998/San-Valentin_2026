@@ -42,7 +42,7 @@ button {
     to {text-shadow: 0 0 25px #ffccd5;}
 }
 
-/* corazones */
+/* corazones y rosas */
 .heart, .rose {
     position: absolute;
     font-size: 26px;
@@ -67,17 +67,35 @@ button {
 .modal-content {
     background: white;
     color: #ff4d6d;
-    padding: 30px;
+    padding: 25px;
     border-radius: 20px;
-    width: 300px;
-    font-size: 20px;
+    width: 340px;
     animation: aparecer 0.5s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.modal-texto {
+    font-size: 20px;
+    line-height: 1.4;
 }
 
 .modal-content button {
-    margin-top: 15px;
+    align-self: center;
+    padding: 12px 35px;
+    border-radius: 14px;
+    border: none;
+    font-size: 18px;
     background: #ff758f;
     color: white;
+    cursor: pointer;
 }
 
 @keyframes aparecer {
@@ -101,16 +119,36 @@ button {
 <!-- Modal -->
 <div class="modal" id="modal">
     <div class="modal-content">
-        Gracias por existir ❤️<br>Te amo muchísimo
-        <br>
+
+        <img src="foto.jpeg">
+
+        <div class="modal-texto">
+            💗 Gracias por existir 💗<br>
+            Te amo muchísimo
+        </div>
+
         <button onclick="cerrarModal()">Cerrar</button>
+
     </div>
 </div>
 
 <script>
+const musica = document.getElementById("musica");
+
+// intentar autoplay al cargar
+window.addEventListener("load", () => {
+    musica.play().catch(() => {
+        console.log("Autoplay bloqueado, esperando interacción");
+    });
+});
+
+// reproducir en la primera interacción del usuario
+document.addEventListener("click", () => {
+    musica.play();
+}, { once: true });
+
 function abrirModal() {
     document.getElementById("modal").style.display = "flex";
-    document.getElementById("musica").play();
 }
 
 function cerrarModal() {
@@ -141,3 +179,4 @@ setInterval(crearRosa, 600);
 
 </body>
 </html>
+
